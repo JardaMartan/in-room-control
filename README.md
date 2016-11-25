@@ -69,6 +69,7 @@ the XML message for API POST is:
 ```
 The XML message should be sent via HTTP POST to `http://codec_ip/putxml` with content-type `text/xml` and API-enabled user credentials.
 
+## "unset" may be required
 At the moment the codec doesn't reflect the on-screen widget changes, so if a widget state is changed via API (for example a slider position), then the user changes it on a touch screen and later the script sends the previous value again, the widget state is not reset back because the codec thinks the widget value hasn't changed from the previous API call. To avoid this the `fill_set_widget.py` script first unsets the widget value and then sends the "set" API call. If you want to run "unset" before "set" API call, use `unset=True` parameter of the `fill_set_widget.update_widget()` function.
 
 If In-Room Control layout is changed (widgets added or removed) or the codec is restarted, the codec sends the following XML message to the web server:  
@@ -94,7 +95,7 @@ If In-Room Control layout is changed (widgets added or removed) or the codec is 
 ```
 The example web server can react accordingly and set the "red", "green" and "blue" sliders. Because this part of the web server uses a codec API call, change the **codec_username** and **codec_password** variables in `codec_flask.py` to reflect your codec username & password.
 
-# "200 OK" Warning
+## "200 OK" Warning
 If the web server responds with anything else than **200 OK**, the codec retries the request 4 more times. If none of the requests returns "200 OK" status, the codec stops sending events completely. Codec restart or `xCommand HttpFeedback register ...` command are required to restore the codec -> web server communication.
 
 # Environment
