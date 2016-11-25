@@ -20,7 +20,7 @@ Example:
 _sudo ./fill\_set\_widget.py -c 192.168.21.136 -u apiuser -p cisco red=10 green=100 blue=60 light=on_  
 (root permissions are needed for Unicorn HAT)
 
-At the moment the codec doesn't reflect the on-screen widget changes, so if the widget state is changed via API (for example a slider position), then the user changes it on a touch screen and the script sends the same value again, the widget state is not reset back because the codec thinks its value hasn't changed from the last API call. To avoid this the fill\_set\_widget.py script first unsets the widget value and then sends the "set" API call.
+At the moment the codec doesn't reflect the on-screen widget changes, so if the widget state is changed via API (for example a slider position), then the user changes it on a touch screen and the script sends the same value again, the widget state is not reset back because the codec thinks its value hasn't changed from the last API call. To avoid this the _fill\_set\_widget.py_ script first unsets the widget value and then sends the "set" API call.
 
 # References
 In-room control documentation:  
