@@ -8,12 +8,36 @@ Cisco CE8.2 codec software brings in-room control widgets on Touch10 panel. This
 
 **Example:**  
 `sudo ./codec_flask.py`  
-(root permissions are needed for Unicorn HAT)
+(root permissions are needed for Unicorn HAT)  
+This runs the web server on console so you can watch XML messages sent by the codec. Example XML message from codec for "green" slidebar change:  
+`<Event>
+  <Identification>
+    <SystemName>Presenter</SystemName>
+    <MACAddress>E4:AA:5D:A2:95:D4</MACAddress>
+    <IPAddress>192.168.21.136</IPAddress>
+    <ProductType>Cisco Codec</ProductType>
+    <ProductID>Cisco TelePresence SX80</ProductID>
+    <SWVersion>ce8.2.2.3263c59</SWVersion>
+    <SerialNumber>FTT194201MZ</SerialNumber>
+  </Identification>
 
-The web server runs on TCP port 5000. In order to instruct the codec to send In-Room Control events to the web server following command needs to be entered on Codec CLI (accessible via SSH):
-`xCommand HttpFeedback register FeedbackSlot: 1 ServerUrl: "http://raspberry_ip_address_or_hostname:5000/codec" Expression: "/event/UserInterface/Extensions/Widget"`  
+  <UserInterface item="1">
+    <Extensions item="1">
+      <Widget item="1">
+        <Action item="1">
+          <WidgetId item="1">green</WidgetId>
+          <Value item="1">111</Value>
+          <Type item="1">changed</Type>
+        </Action>
+      </Widget>
+    </Extensions>
+  </UserInterface>
+</Event>`
+
+The web server runs on TCP port 5000. In order to instruct the codec to send In-Room Control events to the web server following command needs to be entered in Codec CLI (accessible via SSH):
+`xCommand HttpFeedback register FeedbackSlot: slot_number ServerUrl: "http://raspberry_ip_address_or_hostname:5000/codec" Expression: "/event/UserInterface/Extensions/Widget"`  
 **Example**:  
-`xCommand HttpFeedback register FeedbackSlot: 1 ServerUrl: "http://192.168.21.129:5000/codec" Expression: "/event/UserInterface/Extensions/Widget"`
+`xCommand HttpFeedback register FeedbackSlot: 1 ServerUrl: "http://192.168.21.129:5000/codec" Expression: "/event/UserInterface/Extensions/Widget"`  
 
 `fill_set_widget.py` uses codec API to change the widget status. For example it can set a slider position, switch state or actual temperature indicator. Parameters are:  
 `-c codec_ip` - codec IP address or hostname  
