@@ -36,12 +36,12 @@ This runs the web server on console so you can watch XML messages sent by the co
 </Event>
 ```
 
-The web server runs on TCP port 5000. In order to instruct the codec to send In-Room Control events to the web server following command needs to be entered in Codec CLI (accessible via SSH):
+The web server runs on TCP port 5000. In order to instruct the codec to send In-Room Control events to the web server, the following command needs to be entered in Codec CLI (accessible via SSH):  
 `xCommand HttpFeedback register FeedbackSlot: slot_number ServerUrl: "http://raspberry_ip_address_or_hostname:5000/codec" Expression: "/event/UserInterface/Extensions/Widget"`  
 **Example**:  
 `xCommand HttpFeedback register FeedbackSlot: 1 ServerUrl: "http://192.168.21.129:5000/codec" Expression: "/event/UserInterface/Extensions/Widget"`  
 
-`fill_set_widget.py` uses codec API to change the widget status. For example it can set a slider position, switch state or actual temperature indicator. Parameters are:  
+`fill_set_widget.py` uses codec API to change the widget status. For example it can set a slider position, switch ON/OFF state or current temperature indicator. Parameters are:  
 `-c codec_ip` - codec IP address or hostname  
 `-u username` - user name defined on codec, the user has to have "In-room" permissions enabled  
 `-p password` - user's password  
@@ -69,7 +69,7 @@ the XML message for API POST is:
 ```
 The XML message should be sent via HTTP POST to `http://codec_ip/putxml` URL with the document type `text/xml` and API-enabled user credentials.
 
-At the moment the codec doesn't reflect the on-screen widget changes, so if the widget state is changed via API (for example a slider position), then the user changes it on a touch screen and the script sends the same value again, the widget state is not reset back because the codec thinks its value hasn't changed from the last API call. To avoid this the `fill_set_widget.py` script first unsets the widget value and then sends the "set" API call.
+At the moment the codec doesn't reflect the on-screen widget changes, so if a widget state is changed via API (for example a slider position), and then the user changes it on a touch screen and later on the script sends the previous value again, the widget state is not reset back because the codec thinks the widget value hasn't changed from the previous API call. To avoid this the `fill_set_widget.py` script first unsets the widget value and then sends the "set" API call. If you want to run "unset" before "set" API call, use `unset=True` parameter of `update_widget()` function.
 
 If In-Room Control layout is changed (widgets added or removed) or the codec is restarted, the codec sends the following XML message to the web server:  
 ```
@@ -92,7 +92,7 @@ If In-Room Control layout is changed (widgets added or removed) or the codec is 
   </UserInterface>
 </Event>
 ```
-So the web server can react accordingly. Change the **codec_username** and **codec_password** variables in `codec_flask.py` to reflect your codec username & password.
+The web server can react accordingly and set the "red", "green" and "blue" sliders. Because this part of the web server uses a codec API call, change the **codec_username** and **codec_password** variables in `codec_flask.py` to reflect your codec username & password.
 
 # Environment
 The web server and Python script use Python3. To prepare the environment, run:  
