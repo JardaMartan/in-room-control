@@ -72,6 +72,7 @@ The XML message should be sent via HTTP POST to `http://codec_ip/putxml` with co
 ## "unset" may be required
 At the moment the codec doesn't reflect the on-screen widget changes, so if a widget state is changed via API (for example a slider position), then the user changes it on a touch screen and later the script sends the previous value again, the widget state is not reset back because the codec thinks the widget value hasn't changed from the previous API call. To avoid this the `fill_set_widget.py` script first unsets the widget value and then sends the "set" API call. If you want to run "unset" before "set" API call, use `unset=True` parameter of the `fill_set_widget.update_widget()` function.
 
+## Widget layout change or codec restart
 If In-Room Control layout is changed (widgets added or removed) or the codec is restarted, the codec sends the following XML message to the web server:  
 ```
 <Event>
