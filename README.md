@@ -10,11 +10,11 @@ Example:
 _sudo ./codec\_flask.py_  
 (root permissions are needed for Unicorn HAT)
 
-**fill_set_widget.py** uses codec API to change the widget status. For example it can set a slider position, switch state or actual temperature indicator. Parameters are:
-- **-c codec_ip** - codec IP address or hostname
-- **-u username** - user name defined on codec, the user has to have "In-room" permissions enabled
-- **-p password** - user's password
-- **widget_id=value** list - list of widget id's and their new values, multiple widget_id=value can be set simultaneously  
+**fill_set_widget.py** uses codec API to change the widget status. For example it can set a slider position, switch state or actual temperature indicator. Parameters are:  
+**-c codec_ip** - codec IP address or hostname  
+**-u username** - user name defined on codec, the user has to have "In-room" permissions enabled  
+**-p password** - user's password  
+**widget_id=value** list - list of widget id's and their new values, multiple widget_id=value can be set simultaneously  
 
 Example:  
 _sudo ./fill\_set\_widget.py -c 192.168.21.136 -u apiuser -p cisco red=10 green=100 blue=60 light=on_  
