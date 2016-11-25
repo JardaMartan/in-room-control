@@ -97,7 +97,7 @@ if __name__ == '__main__':
     #         time.sleep(0.3)
     
     if update_color_widgets:
-        uni_func.change_fill(in_args.codec_ip, red, green, blue)
+        uni_func.change_fill(red, green, blue)
         update_widget(in_args.codec_ip, in_args.username, in_args.password, 'red', red, unset=True)
         update_widget(in_args.codec_ip, in_args.username, in_args.password, 'green', green, unset=True)
         update_widget(in_args.codec_ip, in_args.username, in_args.password, 'blue', blue, unset=True)
