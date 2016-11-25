@@ -10,7 +10,8 @@ Cisco CE8.2 codec software brings in-room control widgets on Touch10 panel. This
 `sudo ./codec_flask.py`  
 (root permissions are needed for Unicorn HAT)  
 This runs the web server on console so you can watch XML messages sent by the codec. Example XML message from codec for "green" slidebar change:  
-```<Event>
+```
+<Event>
   <Identification>
     <SystemName>Presenter</SystemName>
     <MACAddress>E4:AA:5D:A2:95:D4</MACAddress>
@@ -32,7 +33,8 @@ This runs the web server on console so you can watch XML messages sent by the co
       </Widget>
     </Extensions>
   </UserInterface>
-</Event>```
+</Event>
+```
 
 The web server runs on TCP port 5000. In order to instruct the codec to send In-Room Control events to the web server following command needs to be entered in Codec CLI (accessible via SSH):
 `xCommand HttpFeedback register FeedbackSlot: slot_number ServerUrl: "http://raspberry_ip_address_or_hostname:5000/codec" Expression: "/event/UserInterface/Extensions/Widget"`  
