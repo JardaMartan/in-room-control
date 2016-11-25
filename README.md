@@ -49,7 +49,23 @@ The web server runs on TCP port 5000. In order to instruct the codec to send In-
 
 **Example:**  
 `sudo ./fill_set_widget.py -c 192.168.21.136 -u apiuser -p cisco red=10 green=100 blue=60 light=on`  
-(root permissions are needed for Unicorn HAT)
+(root permissions are needed for Unicorn HAT)  
+The XML format of the message sent to the codec copies the CLI command structure so for example if the CLI command to set a widget state is: `xCommand UserInterface Extensions Widget SetValue WidgetId: red Value: 128` the XML message for API POST is:  
+```
+<Command>
+  <UserInterface>
+    <Extensions>
+      <Widget>
+        <SetValue>
+          <WidgetId>red</WidgetId>
+          <Value>128</Value>
+        </SetValue>
+      </Widget>
+    </Extensions>
+  </UserInterface>
+</Command>
+```
+The XML message should be sent via HTTP POST to `http://codec_ip/putxml` URL with the document type `text/xml` and API-enabled user credentials.
 
 At the moment the codec doesn't reflect the on-screen widget changes, so if the widget state is changed via API (for example a slider position), then the user changes it on a touch screen and the script sends the same value again, the widget state is not reset back because the codec thinks its value hasn't changed from the last API call. To avoid this the `fill_set_widget.py` script first unsets the widget value and then sends the "set" API call.
 
