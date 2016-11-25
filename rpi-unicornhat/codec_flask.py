@@ -9,16 +9,17 @@ Created on Nov 15, 2016
 '''
 
 from flask import Flask, request
-# import urlparse
-# from urllib import parse as urlparse
-import xmltodict
-import json
-import re
 import uni_func
+import fill_set_widget
+from lxml import etree
 
 # Create an instance of Flask
 app = Flask(__name__, static_url_path='/static')
 app.config['DEBUG'] = True
+
+# change this accordingly to the API user access
+codec_username = 'apiuser'
+codec_password = 'C1sco123'
 
 @app.before_request
 def before_request():
@@ -37,18 +38,19 @@ def codec():
     app.logger.info('headers: {}'.format(request.headers))
     app.logger.info('values: {}'.format(data_req))
 
-    action_xml = re.findall(r'<Action.*>.*</Action>', data_str, re.DOTALL)
-    if action_xml:
-        action_arr = json.loads(json.dumps(xmltodict.parse(action_xml[0])))
-        widget_arr = action_arr['Action']
-        widget_name = widget_arr['WidgetId']['#text']
-        widget_event = widget_arr['Type']['#text']
-        if '#text' in widget_arr['Value'].keys():
-            widget_value = widget_arr['Value']['#text']
-        else:
-            widget_value = None
+    xml_tree = etree.fromstring(data_req)
 
-#         app.logger.info('test: {}'.format(action_arr))
+    action = xml_tree.xpath('/Event/UserInterface/Extensions/Widget/Action')
+    if action:
+        widget_value = None
+        for x in action[0].iter():
+            if x.tag == 'WidgetId':
+                widget_name = x.text
+            if x.tag == 'Type':
+                widget_event = x.text
+            if x.tag == 'Value':
+                widget_value = x.text
+
         app.logger.info('widget: {}, event: {}, value: {}'.format(widget_name, widget_event, widget_value))
         
         if widget_event == 'changed' and widget_name in ['red', 'green', 'blue']:
@@ -64,6 +66,15 @@ def codec():
                 uni_func.display_pic(uni_func.SMILE)
             elif widget_value == 'heart':
                 uni_func.display_pic(uni_func.HEART)
+    else:
+        layout_updated = xml_tree.xpath('/Event/UserInterface/Extensions/Widget/LayoutUpdated')
+        if layout_updated:
+            print('widget layout updated or codec restarte, seting widget values')
+            r, g, b = uni_func.unicorn.get_pixel(0,0)
+            print('pixel at (0, 0): {} - {} - {}'.format(r, g, b))
+            fill_set_widget.update_widget(request.remote_addr, codec_username, codec_password, 'red', r)
+            fill_set_widget.update_widget(request.remote_addr, codec_username, codec_password, 'green', g)
+            fill_set_widget.update_widget(request.remote_addr, codec_username, codec_password, 'blue', b)
                 
     return "OK"
 
