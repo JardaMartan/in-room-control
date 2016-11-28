@@ -4,7 +4,7 @@ Cisco CE8.2 codec software brings in-room control widgets on [Touch10](http://ww
 # Raspberry Pi + Unicorn HAT
 **rpi-unicornhat** directory contains examples which use [Unicorn HAT](https://shop.pimoroni.com/products/unicorn-hat) 3-color LED matrix. 
 
-`codec_flask.py` is a Flask-based web server which can receive In-Room Control widget events. If the widget id is "red", "green" or "blue", the LED matrix is filled (or existing fill updated) with the appropriate RGB color. If the widget id is "smile" or "heart" the LED matrix displays a symbol.
+`codec_flask.py` is a Flask-based web server which can receive In-Room Control widget events. If the widget id is **red**, **green** or **blue**, the LED matrix is filled (or existing fill updated) with the appropriate RGB color. If the widget id **picture** and its value is **smile** or **heart** the LED matrix displays a symbol.
 
 **Example:**  
 `sudo ./codec_flask.py`  
