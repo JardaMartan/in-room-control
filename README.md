@@ -1,5 +1,5 @@
 # Cisco CE 8.2 software In-Room Control Examples
-Cisco CE8.2 codec software brings in-room control widgets on Touch10 panel. Upcoming version of the CE software will bring the in-room control to DX70/80 as well. This is a demonstration how to handle the in-room control events on Raspberry Pi.
+Cisco CE8.2 codec software brings in-room control widgets on [Touch10](http://www.cisco.com/c/en/us/products/collaboration-endpoints/telepresence-touch/index.html) panel. Upcoming version of the CE software will bring the in-room control to [DX70/80](http://www.cisco.com/c/en/us/products/collaboration-endpoints/desktop-collaboration-experience-dx600-series/index.html) as well. This is a demonstration how to handle the in-room control events on Raspberry Pi.
 
 # Raspberry Pi + Unicorn HAT
 **rpi-unicornhat** directory contains examples which use [Unicorn HAT](https://shop.pimoroni.com/products/unicorn-hat) 3-color LED matrix. 
