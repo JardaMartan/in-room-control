@@ -66,7 +66,7 @@ def display_pic(pic):
         for w in range(width):
             hPos = h % len(pic)
             char = pic[hPos][w]
-            print("char at {}:{} - {}".format(h, w, char))
+#             print("char at {}:{} - {}".format(h, w, char))
             if char == ' ':
                 unicorn.set_pixel(w, h, 0, 0, 0)
             else:
