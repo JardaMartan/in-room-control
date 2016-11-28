@@ -97,7 +97,7 @@ If In-Room Control layout has changed (widgets added or removed) or the codec ha
 The example web server can react accordingly and set the "red", "green" and "blue" sliders. Because this part of the web server uses a codec API call, change the **codec_username** and **codec_password** variables in `codec_flask.py` to reflect your codec username & password.
 
 ## "200 OK" Warning
-If the web server responds with anything else than **200 OK**, the codec retries the request 4 more times. If none of the requests returns "200 OK" status, the codec stops sending events completely. Codec restart or `xCommand HttpFeedback register ...` command are required to restore the codec -> web server communication.
+If the web server responds with an error message (e.g. some of **5xx** or **4xx**), the codec retries the request 4 more times. If none of the requests returns "200 OK" status, the codec stops sending events completely. Codec restart or `xCommand HttpFeedback register ...` command is required to restore the codec to web server communication.
 
 # Environment
 The web server and Python script use Python3. To prepare the environment, run:  
