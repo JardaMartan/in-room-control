@@ -63,9 +63,9 @@ def codec():
         
         if widget_name == 'picture' and widget_event == 'pressed':
             if widget_value == 'smile':
-                uni_func.display_pic(uni_func.SMILE)
+                uni_func.display_pic(uni_func.COLOR_SMILE)
             elif widget_value == 'heart':
-                uni_func.display_pic(uni_func.HEART)
+                uni_func.display_pic(uni_func.HEART, x_color=uni_func.PURPLE)
     else:
         layout_updated = xml_tree.xpath('/Event/UserInterface/Extensions/Widget/LayoutUpdated')
         if layout_updated:
