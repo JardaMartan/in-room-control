@@ -23,18 +23,21 @@ codec_password = 'C1sco123'
 
 @app.before_request
 def before_request():
-    if True:
-        print("HEADERS", request.headers)
-        print("REQ_path", request.path)
-        print("ARGS",request.args)
-        print("DATA",request.data)
-        print("FORM",request.form)
+#
+# for debugging only
+#
+#     if True:
+#         print("HEADERS", request.headers)
+#         print("REQ_path", request.path)
+#         print("ARGS",request.args)
+#         print("DATA",request.data)
+#         print("FORM",request.form)
+    pass
         
 @app.route('/codec', methods=['POST', 'GET'])
 def codec():
 
     data_req = request.data.decode('utf-8')
-    data_str = data_req.replace('\n', '').replace('\r', '')
     app.logger.info('headers: {}'.format(request.headers))
     app.logger.info('values: {}'.format(data_req))
 
@@ -44,12 +47,13 @@ def codec():
     if action:
         widget_value = None
         for x in action[0].iter():
-            if x.tag == 'WidgetId':
-                widget_name = x.text
-            if x.tag == 'Type':
-                widget_event = x.text
-            if x.tag == 'Value':
-                widget_value = x.text
+            tag_l = x.tag.lower()
+            if tag_l == 'widgetid' and x.text:
+                widget_name = x.text.lower()
+            if tag_l == 'type' and x.text:
+                widget_event = x.text.lower()
+            if tag_l == 'value' and x.text:
+                widget_value = x.text.lower()
 
         app.logger.info('widget: {}, event: {}, value: {}'.format(widget_name, widget_event, widget_value))
         
