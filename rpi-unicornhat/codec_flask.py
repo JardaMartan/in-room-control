@@ -73,9 +73,8 @@ def codec():
     else:
         layout_updated = xml_tree.xpath('/Event/UserInterface/Extensions/Widget/LayoutUpdated')
         if layout_updated:
-            print('widget layout updated or codec restarte, seting widget values')
             r, g, b = uni_func.unicorn.get_pixel(0,0)
-            print('pixel at (0, 0): {} - {} - {}'.format(r, g, b))
+            app.logger.info('widget layout updated or codec restarted, setting "red", "green" and "blue" widget values to {} - {} - {}'.format(r, g, b))
             fill_set_widget.update_widget(request.remote_addr, codec_username, codec_password, 'red', r)
             fill_set_widget.update_widget(request.remote_addr, codec_username, codec_password, 'green', g)
             fill_set_widget.update_widget(request.remote_addr, codec_username, codec_password, 'blue', b)
