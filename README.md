@@ -103,7 +103,7 @@ If the web server responds with an error message (e.g. some of **5xx** or **4xx*
 The web server and Python script use Python3. To prepare the environment, run:  
 `sudo apt-get install python-flask python3-flask python-lxml python3-lxml`  
 Unicorn HAT requires:  
-`curl -sS get.pimoroni.com/unicornhat | bash`
+`curl -sS get.pimoroni.com/unicornhat | bash`  
 Unicorn HAT is in conflict with audio chip of the Raspberry Pi (at least on my Pi3 every example displayed just a crazy flickering). To disable audio edit `/etc/modprobe.d/raspi-blacklist.conf`, add line `blacklist snd-bcm2835` to it and reboot.
 
 # References
