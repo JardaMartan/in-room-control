@@ -2,8 +2,10 @@
 As of CE8.2 version Cisco codec software brings in-room control widgets on [Touch10](http://www.cisco.com/c/en/us/products/collaboration-endpoints/telepresence-touch/index.html) panel. Later on the in-room control was introduced to [DX70/80](http://www.cisco.com/c/en/us/products/collaboration-endpoints/desktop-collaboration-experience-dx600-series/index.html) as well. This is a demonstration of how to handle the in-room control events on Raspberry Pi or by a macro running locally on the codec. For Raspberry example watch the YouTube demo: https://youtu.be/cSWMKNZ9b1s
 
 # Image Composition
-CE9.6 introduced the capability to combine multiple inputs (local or remote) to a composite picture. Depending on the codec model, up to four HDMI inputs can be combined. Remote video streams can be added as well. The picture layout can be either "Equal" (all video streams of the same size) or "Prominent" (one video large, the rest small at the bottom of the screen). There are actually two sets of commands for video composition:
-* **xCommand Video Matrix ...** set of commands is used for local composition. Multiple inputs are combined into a single display output. In this case the codec works as an HDMI cross-connect.
+CE9.6 introduced the capability to combine multiple inputs (local or remote) to a composite picture. Depending on the codec model, up to four HDMI inputs can be combined. Remote video streams can be added as well. The picture layout can be either "Equal" (all video streams of the same size) or "Prominent" (one video large, the rest small at the bottom of the screen). Both layouts have fixed proportions. It is not possible to configure position and dimensions of each video stream.
+
+There are actually two sets of commands for video composition:
+* **xCommand Video Matrix ...** commands are used for local composition. Multiple inputs are combined into a single display output. In this case the codec works as an HDMI cross-connect.
 * **xCommand Video Input SetMainVideoSource ...** command is used for an image composition for remote viewers. The viewers will see a combined video in the main video channel.
 
 For more details about the commands refer to the [documentation](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce96/collaboration-endpoint-software-api-reference-guide-ce96.pdf).
