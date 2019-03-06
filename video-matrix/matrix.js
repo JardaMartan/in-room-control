@@ -64,10 +64,10 @@ function updateZoomWidget(zoom) {
  * @param  {int} newInputId new input Id 
  */ 
 function swapPCInput(oldInputId, newInputId) {
-  var oldIndex = matrixInputs.indexOf(oldInputId);
+  var oldIndex = pictureLayoutManager.matrixInputs.indexOf(oldInputId);
   if (oldIndex >= 0) {
-    matrixInputs[oldIndex] = newInputId;
-    var layoutId = ["Prominent", "Equal"].indexOf(matrixLayout) + 1;
+    pictureLayoutManager.matrixInputs[oldIndex] = newInputId;
+    var layoutId = ["Prominent", "Equal"].indexOf(pictureLayoutManager.matrixLayout) + 1;
     xapi.command("UserInterface Extensions Widget Action", {WidgetId: "picture_layout", Value: layoutId, Type: "released"});
   }
 }
@@ -389,6 +389,24 @@ PictureLayout.prototype.isInputProminent = function(inputId) {
   return (this.matrixInputs[0] == inputId);
 }
 
+PictureLayout.prototype.swapOutputs = function() {
+  var outputA =  this.matrixOutputId;
+  var outputB = 2;
+  if (outputA == 2) {
+    outputB = 1;
+  }
+
+  var cmdParams = {
+    "OutputA": outputA,
+    "OutputB": outputB,
+  }
+  console.log("Output swap parameters: \""+dumpObj(cmdParams, "cmdParams", "  ")+"\"");
+  xapi.command("Video Matrix Swap", cmdParams).then((status) => {
+    this.matrixOutputId = outputB;
+    console.log("new matrix ouput: "+this.matrixOutputId);
+  });  
+}
+
 
 /**
  * CameraControl - class for controlling the camera
@@ -561,6 +579,11 @@ const touchFeedback = xapi.event.on('UserInterface Extensions Widget', (status) 
               cameraControl.cameraZoom = zoom;
   	        }
 	          break;
+          case "output_swap":
+            if (actionType == "clicked") {
+              pictureLayoutManager.swapOutputs();
+            }
+            break;
 	        default:
       	    console.log("Widget "+widgetId+" "+actionType+", value: "+widgetValue);
   	    }
