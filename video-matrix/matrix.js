@@ -94,7 +94,7 @@ function defaultWidgets() {
  */ 
 function PictureLayout() {
   this.pcInputId = 3; // input which is taken as "PC"
-  this.remoteInputId = 1;  // remote stream input Id
+  this.remoteInputId = 1 + REMOTE_INPUT_SHIFTER;  // remote stream input Id
   this.matrixOutputId = 1; // output (display port) Id
   this.localLayoutName = "Equal"; // picture layout for local viewers
   this.remoteLayoutName = "Equal"; // picture layout for remote viewers
