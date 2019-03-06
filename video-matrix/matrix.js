@@ -120,7 +120,7 @@ PictureLayout.prototype.addInput = function(inputId) {
   var inputForMatrix = this.getInputForMatrix(inputId);
   cmdParams[inputForMatrix["type"]] = inputForMatrix["id"];
   
-  console.log("add input args: \""+dumpObj(cmdParams, "")+"\"");
+  console.log("add input args: \""+dumpObj(cmdParams, "cmdParams", "  ")+"\"");
   xapi.command("Video Matrix Assign", cmdParams);
   
   // if the input being removed is in prominent view, make prominent the next in the input list
@@ -149,13 +149,18 @@ PictureLayout.prototype.removeInput = function(inputId) {
   }
   var inputForMatrix = this.getInputForMatrix(inputId);
   cmdParams[inputForMatrix.type] = inputForMatrix.id;
-  
+
+  console.log("Remove input parameters: \""+dumpObj(cmdParams, "cmdParams", "  ")+"\"");
   xapi.command("Video Matrix Unassign", cmdParams);
   // if the input being removed is in prominent view, make prominent the next in the input list
   if ((this.localLayoutName == "Prominent") && (this.matrixInputs.indexOf(inputId) === 0) && this.matrixInputs.length > 1) {
     xapi.command("UserInterface Extensions Widget Action", {WidgetId: "prominent_input", Value: this.matrixInputs[1], Type: "released"});
   }
-  this.localMatrixInputs.splice(this.localMatrixInputs.indexOf(inputId), 1);
+  if (this.matrixInputs.length == 0) {
+    console.log("No inputs active");
+    return;
+  }
+  this.matrixInputs.splice(this.matrixInputs.indexOf(inputId), 1);
 
   this.generateRemotePicture();
 }
@@ -215,7 +220,7 @@ PictureLayout.prototype.addPCInput = function() {
  *  
  */ 
 PictureLayout.prototype.removePCInput = function() {
-  this.addRemoveInput(this.pcInputId);
+  this.removeInput(this.pcInputId);
 }
 
 /**
@@ -303,7 +308,7 @@ PictureLayout.prototype.generateRemotePicture = function() {
   }
   if (remInputs.length > 0) {
     remoteCmdArgs.SourceId = remInputs;
-    console.log("Remote layout parameters: \""+dumpObj(remoteCmdArgs, "", "  ")+"\"");
+    console.log("Remote layout parameters: \""+dumpObj(remoteCmdArgs, "remoteCmdArgs", "  ")+"\"");
     xapi.command("Video Input SetMainVideoSource", remoteCmdArgs);
   }
 }
@@ -358,8 +363,13 @@ PictureLayout.prototype.makeRemoteProminent = function() {
  * @param  {int} inputId input id 
  */ 
 PictureLayout.prototype.makeInputProminent = function(inputId) {
-  if (isInputProminent(inputId)) {
+  console.log("Make input prominent: "+inputId);
+  if (this.isInputProminent(inputId)) {
     console.log(""+inputId+" is already prominent, no action taken");
+    return;
+  }
+  if (this.matrixInputs.length == 0) {
+    console.log("No inputs active");
     return;
   }
   this.matrixInputs.splice(this.matrixInputs.indexOf(inputId), 1);
