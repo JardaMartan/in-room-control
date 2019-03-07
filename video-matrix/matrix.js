@@ -234,7 +234,7 @@ PictureLayout.prototype.setPCInput = function(pcInputId) {
     if (pcIndex >= 0) {
       this.pcInputId = pcInputId;
       this.matrixInputs[pcIndex] = this.pcInputId;
-      generateLocalPicture();
+      this.generateLocalPicture();
     }
   }
 }
@@ -250,7 +250,7 @@ PictureLayout.prototype.setRemoteInput = function(remoteInputId) {
     if (remoteInputIndex >= 0) {
       this.remoteInputId = remoteInputId;
       this.matrixInputs[remoteInputIndex] = this.remoteInputId;
-      generateRemotePicture();
+      this.generateRemotePicture();
     }
   }
 }
