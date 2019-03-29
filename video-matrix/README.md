@@ -18,7 +18,7 @@ The image composition is controlled by **Video Matrix** tab. The **Cameras** tab
 Each widget has a unique id (for example `m_pc` or `output_swap`). When touched, the widget generates an action which consists of the action **type** and **value**. Depending on the widget, different action types are created. For example a **Toggle** widget generates  **changed** type and **value** of `on` and `off`. Sometimes it's sufficient to read just the action value (for example **Toggle** widget). In other cases it's better to read the action type. For example **Button** widget generates types **pushed**, **released** and **clicked**. When developing an in-room-control handler it's best to log all events and decide which should be used and which can be ignored.
 
 # Macro
-[matrix.js](matrix.js) file can be uploaded to a codec's macro editor. It's a JavaScript engine which runs on the codec itself, no external application servers are required. The engine is based on [JSXAPI](https://github.com/cisco-ce/jsxapi) documentation and other resources can be found on [Cisco DevNet](https://developer.cisco.com/codeexchange/github/repo/CiscoDevNet/awesome-xapi/).
+[matrix.js](matrix.js) file can be uploaded to a codec's macro editor. It's a JavaScript engine which runs on the codec itself, no external application servers are required. The engine is based on [JSXAPI](https://github.com/cisco-ce/jsxapi). Documentation and other resources can be found on [Cisco DevNet](https://developer.cisco.com/codeexchange/github/repo/CiscoDevNet/awesome-xapi/).
 
 [matrix.js](matrix.js) has three sections:
 1. definition of `PictureLayout` class
