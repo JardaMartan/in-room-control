@@ -8,6 +8,8 @@ There are actually two sets of commands for video composition:
 For more details about the commands refer to the [documentation](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce96/collaboration-endpoint-software-api-reference-guide-ce96.pdf).
 
 You can see the example in action here:  
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/fKuViiEQwYg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 <div align="center">
   <a href="https://www.youtube.com/watch?v=fKuViiEQwYg"><img src="https://img.youtube.com/vi/fKuViiEQwYg/0.jpg" alt="demo"></a>
 </div>  
