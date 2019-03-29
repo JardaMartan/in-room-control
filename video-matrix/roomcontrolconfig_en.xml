@@ -10,31 +10,9 @@
     <Page>
       <Name>Video Matrix</Name>
       <Row>
-        <Name>PC1 input</Name>
+        <Name>PC input</Name>
         <Widget>
-          <WidgetId>pc_1_inputs</WidgetId>
-          <Type>GroupButton</Type>
-          <Options>size=4</Options>
-          <ValueSpace>
-            <Value>
-              <Key>3</Key>
-              <Name>A</Name>
-            </Value>
-            <Value>
-              <Key>4</Key>
-              <Name>B</Name>
-            </Value>
-            <Value>
-              <Key>5</Key>
-              <Name>C</Name>
-            </Value>
-          </ValueSpace>
-        </Widget>
-      </Row>
-      <Row>
-        <Name>PC2 input</Name>
-        <Widget>
-          <WidgetId>pc_2_inputs</WidgetId>
+          <WidgetId>pc_inputs</WidgetId>
           <Type>GroupButton</Type>
           <Options>size=4</Options>
           <ValueSpace>
@@ -57,12 +35,12 @@
         <Name>Combined View</Name>
         <Widget>
           <WidgetId>widget_5</WidgetId>
-          <Name>PC1</Name>
+          <Name>PC</Name>
           <Type>Text</Type>
           <Options>size=1;fontSize=normal;align=center</Options>
         </Widget>
         <Widget>
-          <WidgetId>m_pc_1</WidgetId>
+          <WidgetId>m_pc</WidgetId>
           <Type>ToggleButton</Type>
           <Options>size=1</Options>
         </Widget>
@@ -79,12 +57,12 @@
         </Widget>
         <Widget>
           <WidgetId>widget_9</WidgetId>
-          <Name>PC2</Name>
+          <Name>Remote</Name>
           <Type>Text</Type>
           <Options>size=1;fontSize=normal;align=center</Options>
         </Widget>
         <Widget>
-          <WidgetId>m_pc_2</WidgetId>
+          <WidgetId>m_remote</WidgetId>
           <Type>ToggleButton</Type>
           <Options>size=1</Options>
         </Widget>
@@ -127,11 +105,11 @@
           <ValueSpace>
             <Value>
               <Key>3</Key>
-              <Name>PC1</Name>
+              <Name>PC</Name>
             </Value>
             <Value>
               <Key>4</Key>
-              <Name>PC2</Name>
+              <Name>Remote</Name>
             </Value>
             <Value>
               <Key>1</Key>

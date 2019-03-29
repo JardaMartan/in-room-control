@@ -10,6 +10,8 @@ There are actually two sets of commands for video composition:
 
 For more details about the commands refer to the [documentation](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce96/collaboration-endpoint-software-api-reference-guide-ce96.pdf).
 
+You can see the example in action [here](https://youtu.be/fKuViiEQwYg).
+
 **video-matrix** folder contains a sample in-room-control layout (**roomcontrolconfig_en.xml**) which allows for input composition and camera control (pan, tilt and zoom). The in-room-control events are handled by a local macro (**matrix.js**). The example was developed on [Cisco Webex Room Kit Pro](https://www.cisco.com/c/en/us/products/collateral/collaboration-endpoints/webex-room-series/datasheet-c78-741052.html) with two [P60](https://www.cisco.com/c/en/us/products/collateral/collaboration-endpoints/telepresence-precision-cameras/datasheet-c78-669051.html) cameras. Other Room Kit series codec provide the composition functionality as well but they are more limited in the number of inputs. Check the [documentation](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce96/collaboration-endpoint-software-api-reference-guide-ce96.pdf) before trying the example on a different codec and adjust the in-room-control panel and matrix.js macro accordingly. For the detailed in-room-control and macro information refer to the [documentation](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce96/sx-mx-dx-room-kit-customization-guide-ce96.pdf).
 
 # Presenter Track Layout Reset
