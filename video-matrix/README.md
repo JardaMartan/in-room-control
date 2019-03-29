@@ -10,6 +10,6 @@ For more details about the commands refer to the [documentation](https://www.cis
 You can see the example in action [here](https://youtu.be/fKuViiEQwYg).
 
 # In Room Control Widgets
-(roomcontrolconfig_en.xml) file can be uploaded to a codec's In-Room Control Editor (Integration->In-Room Control, Launch Editor).  
+[roomcontrolconfig_en.xml](roomcontrolconfig_en.xml) file can be uploaded to a codec's In-Room Control Editor (Integration->In-Room Control, Launch Editor).  
 ![In-Room Control Editor](in-room-editor.png)  
 The image composition is controlled by **Video Matrix** tab. The **Cameras** tab is an additional example of how the custom camera controls can look like.
