@@ -1,3 +1,5 @@
+**The latest version of the video matrix example is now at** https://github.com/CiscoSE/video-matrix
+
 ## Image Composition
 CE9.6 introduced the capability to combine multiple inputs (local or remote) to a composite picture. Depending on the codec model, up to four HDMI inputs can be combined. Remote video streams can be added as well. The picture layout can be either "Equal" (all video streams of the same size) or "Prominent" (one video large, the rest small at the bottom of the screen). Both layouts have fixed proportions. It is not possible to configure position and dimensions of each video stream.
 
